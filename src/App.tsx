@@ -1,22 +1,28 @@
 import React from 'react';
 import Tree from 'react-tree-graph';
+import data from './data';
 import 'react-tree-graph/dist/style.css'
+import './App.css'
 
-const App: React.FC = () => {
-  let data = {
-    name: 'Parent',
-    children: [{
-      name: 'Child One'
-    }, {
-      name: 'Child Two'
-    }]
+const App: React.FC = (props: any) => {
+  const handleClick = (event: any, node: any) => {
+    console.log('handle click', event)
+    console.log('handle click node', node)
+    alert(`${node} got clicked`);
+  }
 
-  };
   return (
     <Tree
+      animated={true}
       data={data}
-      height={400}
-      width={400}
+      nodeRadius={15}
+      margins={{ top: 20, bottom: 10, left: 20, right: 200 }}
+      gProps={{
+        className: 'node',
+        onClick: handleClick
+      }}
+      height={700}
+      width={1000}
     />
   );
 }
@@ -24,21 +30,25 @@ const App: React.FC = () => {
 export default App;
 
 
-// const App: React.FC = () => {
-//   let data = {
-// 	name: 'Parent',
-// 	children: [{
-// 		name: 'Child One'
-// 	}, {
-// 		name: 'Child Two'
-// 	}]
-// };
+
+// const App: React.FC = (props: any) => {
+//   const handleClick = (event: any, node: any) => {
+//     console.log('handle click ', event);
+//     console.log('handle click node', node);
+//     alert(`${node} got clicked`);
+//   }
 
 //   return (
 //     <Tree
-// 	data={data}
-// 	height={400}
-// 	width={400}/>
+//       data={data}
+//       nodeRadius={15}
+//       margins={{ top: 20, bottom: 10, left: 20, right: 200 }}
+//       gProps={{
+// 	 className: 'node',
+// 	 onClick: handleClick
+//       }}
+//       height={700}
+//       width={1000}/>
 //   );
 // }
 
